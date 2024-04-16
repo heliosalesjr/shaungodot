@@ -1,17 +1,74 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy67rr5jfihdv"]
+[gd_scene load_steps=8 format=3 uid="uid://dy67rr5jfihdv"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_3wmog"]
 [ext_resource type="Texture2D" uid="uid://chr56cmye6dac" path="res://assets/graphics/player/basic/idle.png" id="1_g14gr"]
+[ext_resource type="Texture2D" uid="uid://dfptvsmyiy10o" path="res://assets/graphics/player/basic/walk.png" id="3_cs4w3"]
+[ext_resource type="Texture2D" uid="uid://c63pccsg2f4jn" path="res://assets/graphics/player/gun/idle.png" id="3_osevv"]
+[ext_resource type="Texture2D" uid="uid://camdhpjkvrjed" path="res://assets/graphics/player/gun/walk.png" id="5_s0y1k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcp4t"]
 radius = 4.0
 height = 14.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpxvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g14gr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_osevv")
+}],
+"loop": true,
+"name": &"idle_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cs4w3")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_s0y1k")
+}],
+"loop": true,
+"name": &"jump_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g14gr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cs4w3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_osevv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s0y1k")
+}],
+"loop": true,
+"name": &"walk_gun",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3wmog")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_g14gr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dcp4t")
@@ -25,5 +82,10 @@ position_smoothing_enabled = true
 [node name="CoolDownTimer" type="Timer" parent="Timers"]
 wait_time = 0.7
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mpxvo")
+animation = &"walk_gun"
+autoplay = "idle"
 
 [connection signal="timeout" from="Timers/CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
