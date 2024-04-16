@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-
 var direction_x := 0
 var facing_right := true
 var has_gun := true
 @export var speed = 150
-
 var can_shoot = true
+
+signal shoot(pos: Vector2, direction: bool)
 
 func _process(delta):
 	get_input()
@@ -19,15 +19,13 @@ func _process(delta):
 func get_input():
 	direction_x = Input.get_axis("left","right")
 	
-	
-	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = -200
 	
 	if Input.is_action_pressed("shoot") && can_shoot:
-		print("shoot")
 		can_shoot = false
 		$Timers/CoolDownTimer.start()
+		shoot.emit(global_position, facing_right)
 
 func apply_gravity():
 	velocity.y += 10
