@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var direction_x := 0
 var facing_right := true
-var has_gun := true
+var has_gun := false
 @export var speed = 150
 var can_shoot = true
 
