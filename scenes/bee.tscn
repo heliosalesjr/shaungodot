@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpa6db8425hyk"]
+[gd_scene load_steps=4 format=3 uid="uid://dpa6db8425hyk"]
 
+[ext_resource type="Script" path="res://scenes/bee.gd" id="1_7buio"]
 [ext_resource type="Texture2D" uid="uid://c6dmv7d81a53m" path="res://assets/graphics/Enemies/bee/0.png" id="1_oe85f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk43o"]
@@ -9,9 +10,12 @@ height = 10.0
 [node name="Bee" type="Area2D"]
 collision_layer = 4
 collision_mask = 19
+script = ExtResource("1_7buio")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_oe85f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rk43o")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
