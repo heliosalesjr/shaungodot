@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var direction_x := 0
+var direction_x := 0.0
 var facing_right := true
 var has_gun := false
 @export var speed = 150
@@ -8,7 +8,7 @@ var can_shoot = true
 
 signal shoot(pos: Vector2, direction: bool)
 
-func _process(delta):
+func _process(_delta):
 	get_input()
 	apply_gravity()
 	get_facing_direction()
