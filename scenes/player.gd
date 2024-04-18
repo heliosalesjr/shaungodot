@@ -22,11 +22,13 @@ func get_input():
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = -200
 	
-	if Input.is_action_pressed("shoot") && can_shoot:
+	if Input.is_action_pressed("shoot") && can_shoot && has_gun:
 		can_shoot = false
 		$Timers/CoolDownTimer.start()
 		shoot.emit(global_position, facing_right)
-
+		$Timers/FireTimer.start()
+		$Fire.get_child(int(facing_right)).show()
+		
 func apply_gravity():
 	velocity.y += 10
 
@@ -47,3 +49,9 @@ func get_animation():
 	
 func _on_cool_down_timer_timeout():
 	can_shoot = true
+
+
+func _on_fire_timer_timeout():
+	for child in $Fire.get_children():
+		child.hide()
+		
