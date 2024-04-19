@@ -5,6 +5,8 @@ var facing_right := true
 var has_gun := false
 @export var speed = 150
 var can_shoot = true
+var health := 5
+var vulnerable := true
 
 signal shoot(pos: Vector2, direction: bool)
 
@@ -50,8 +52,19 @@ func get_animation():
 func _on_cool_down_timer_timeout():
 	can_shoot = true
 
-
 func _on_fire_timer_timeout():
 	for child in $Fire.get_children():
 		child.hide()
 		
+func get_damage(amount):
+	if vulnerable:
+		health -= amount
+		print(health)
+		var tween = create_tween()
+		tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 1.0, 0.0)
+		tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 0.0, 0.1).set_delay(0.2)
+		vulnerable = false
+		$Timers/InvincibilityTimer.start()
+
+func _on_invincibility_timer_timeout():
+	vulnerable = true

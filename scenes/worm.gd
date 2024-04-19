@@ -10,4 +10,7 @@ func _on_area_entered(area):
 	tween.tween_property($Sprite2D, "material:shader_parameter/amount", 0.0, 0.1).set_delay(0.2)
 	if health < 1:
 		queue_free()
-	
+
+func _on_body_entered(body):
+	if 'get_damage' in body:
+		body.get_damage(1)
