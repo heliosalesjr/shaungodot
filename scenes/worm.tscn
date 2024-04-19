@@ -1,29 +1,76 @@
-[gd_scene load_steps=6 format=3 uid="uid://brsbmo1lvt3rb"]
+[gd_scene load_steps=11 format=3 uid="uid://brsbmo1lvt3rb"]
 
 [ext_resource type="Script" path="res://scenes/worm.gd" id="1_3ofww"]
 [ext_resource type="Texture2D" uid="uid://dilo1tn808fex" path="res://assets/graphics/Enemies/worm/0.png" id="1_vnq1o"]
 [ext_resource type="Shader" path="res://scenes/flicker.gdshader" id="2_3lfnv"]
+[ext_resource type="Texture2D" uid="uid://cv74fe1n24lgm" path="res://assets/graphics/Enemies/worm/1.png" id="4_gh78q"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4v2hi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_byj2f"]
 shader = ExtResource("2_3lfnv")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_37pee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vnq1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gh78q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70qg8"]
 size = Vector2(8, 6.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta4lt"]
+size = Vector2(15, 1.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32rmo"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qland"]
+size = Vector2(2, 2)
 
 [node name="Worm" type="Area2D"]
 collision_layer = 4
 collision_mask = 19
 script = ExtResource("1_3ofww")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_4v2hi")
-texture = ExtResource("1_vnq1o")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_byj2f")
+sprite_frames = SubResource("SpriteFrames_37pee")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_70qg8")
 
+[node name="BorderArea" type="Area2D" parent="."]
+collision_mask = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderArea"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ta4lt")
+
+[node name="RightCliffArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCliffArea"]
+position = Vector2(6, 5)
+shape = SubResource("RectangleShape2D_32rmo")
+
+[node name="LeftCliffArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCliffArea"]
+position = Vector2(-6, 5)
+shape = SubResource("RectangleShape2D_qland")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="BorderArea" to="." method="_on_border_area_body_entered"]
+[connection signal="body_exited" from="RightCliffArea" to="." method="_on_right_cliff_area_body_exited"]
+[connection signal="body_exited" from="LeftCliffArea" to="." method="_on_left_cliff_area_body_exited"]
