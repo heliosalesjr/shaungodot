@@ -1,8 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpa6db8425hyk"]
+[gd_scene load_steps=9 format=3 uid="uid://dpa6db8425hyk"]
 
 [ext_resource type="Script" path="res://scenes/bee.gd" id="1_7buio"]
 [ext_resource type="Texture2D" uid="uid://c6dmv7d81a53m" path="res://assets/graphics/Enemies/bee/0.png" id="1_oe85f"]
 [ext_resource type="Shader" path="res://scenes/flicker.gdshader" id="2_vfqjh"]
+[ext_resource type="Texture2D" uid="uid://dkgqo1pfi70kk" path="res://assets/graphics/Enemies/bee/1.png" id="3_cq3rg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_euwyb"]
+shader = ExtResource("2_vfqjh")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qbmfo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oe85f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cq3rg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sjp5n"]
 shader = ExtResource("2_vfqjh")
@@ -18,7 +38,14 @@ collision_layer = 4
 collision_mask = 19
 script = ExtResource("1_7buio")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_euwyb")
+sprite_frames = SubResource("SpriteFrames_qbmfo")
+autoplay = "default"
+frame_progress = 0.801561
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_sjp5n")
 texture = ExtResource("1_oe85f")
 

@@ -24,7 +24,7 @@ func _on_body_entered(body):
 		body.get_damage(1)
 
 
-func _on_border_area_body_entered(Terrain):
+func _on_border_area_body_entered(_Terrain):
 	print('terrain')
 	direction_x *= -1
 	$AnimatedSprite2D.flip_h = not $AnimatedSprite2D.flip_h

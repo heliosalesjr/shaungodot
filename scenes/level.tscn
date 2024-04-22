@@ -124,11 +124,13 @@ position = Vector2(377, 226)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Bee" parent="Enemies" instance=ExtResource("3_880iw")]
+[node name="Bee" parent="Enemies" node_paths=PackedStringArray("marker1", "marker2") instance=ExtResource("3_880iw")]
 position = Vector2(486, 224)
+marker1 = NodePath("../../BeePathPoints/Marker2D")
+marker2 = NodePath("../../BeePathPoints/Marker2D2")
 
 [node name="Worm" parent="Enemies" instance=ExtResource("5_vy3w5")]
-position = Vector2(464, 252)
+position = Vector2(542, 252)
 
 [node name="Bullets" type="Node2D" parent="."]
 
@@ -136,5 +138,13 @@ position = Vector2(464, 252)
 
 [node name="Gun" parent="Guns" instance=ExtResource("5_1jc8d")]
 position = Vector2(391, 230)
+
+[node name="BeePathPoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="BeePathPoints"]
+position = Vector2(448, 208)
+
+[node name="Marker2D2" type="Marker2D" parent="BeePathPoints"]
+position = Vector2(491, 194)
 
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
