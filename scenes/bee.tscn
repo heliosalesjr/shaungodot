@@ -42,7 +42,7 @@ script = ExtResource("1_7buio")
 material = SubResource("ShaderMaterial_euwyb")
 sprite_frames = SubResource("SpriteFrames_qbmfo")
 autoplay = "default"
-frame_progress = 0.801561
+frame_progress = 0.771062
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

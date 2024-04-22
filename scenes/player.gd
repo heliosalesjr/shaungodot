@@ -5,7 +5,7 @@ var facing_right := true
 var has_gun := false
 @export var speed = 150
 var can_shoot = true
-var health := 5
+var health := 100
 var vulnerable := true
 
 signal shoot(pos: Vector2, direction: bool)
@@ -17,6 +17,7 @@ func _process(_delta):
 	get_animation()
 	velocity.x = direction_x * speed
 	move_and_slide()
+	check_death()
 	
 func get_input():
 	direction_x = Input.get_axis("left","right")
@@ -68,3 +69,7 @@ func get_damage(amount):
 
 func _on_invincibility_timer_timeout():
 	vulnerable = true
+
+func check_death():
+	if health <= 0:
+		get_tree().quit()

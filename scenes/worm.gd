@@ -21,7 +21,7 @@ func check_death():
 
 func _on_body_entered(body):
 	if 'get_damage' in body:
-		body.get_damage(1)
+		body.get_damage(10)
 
 
 func _on_border_area_body_entered(_Terrain):

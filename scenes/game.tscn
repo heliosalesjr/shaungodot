@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwpu87ky43uf4"]
+[gd_scene load_steps=3 format=3 uid="uid://bwpu87ky43uf4"]
 
 [ext_resource type="PackedScene" uid="uid://bwh1co2fi1rok" path="res://scenes/level.tscn" id="1_ny66a"]
+[ext_resource type="PackedScene" uid="uid://drd4ha552c0q6" path="res://scenes/ui.tscn" id="2_v2xr7"]
 
 [node name="Game" type="Node"]
 
@@ -16,3 +17,5 @@ grow_vertical = 2
 color = Color(0.988235, 0.87451, 0.803922, 1)
 
 [node name="Level" parent="." instance=ExtResource("1_ny66a")]
+
+[node name="UI" parent="." instance=ExtResource("2_v2xr7")]
