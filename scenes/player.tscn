@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy67rr5jfihdv"]
+[gd_scene load_steps=14 format=3 uid="uid://dy67rr5jfihdv"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_3wmog"]
 [ext_resource type="Texture2D" uid="uid://chr56cmye6dac" path="res://assets/graphics/player/basic/idle.png" id="1_g14gr"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c63pccsg2f4jn" path="res://assets/graphics/player/gun/idle.png" id="3_osevv"]
 [ext_resource type="Texture2D" uid="uid://camdhpjkvrjed" path="res://assets/graphics/player/gun/walk.png" id="5_s0y1k"]
 [ext_resource type="Texture2D" uid="uid://bp6h7xynj37oa" path="res://assets/graphics/bullet/fire.png" id="6_uy631"]
+[ext_resource type="AudioStream" uid="uid://c48kex2a6anmo" path="res://assets/audio/synth_laser_03.ogg" id="8_0aqy0"]
+[ext_resource type="AudioStream" uid="uid://due31lte03oys" path="res://assets/audio/jump.mp3" id="9_cg648"]
+[ext_resource type="AudioStream" uid="uid://6unrv3cfpge4" path="res://assets/audio/shot_01.ogg" id="10_wux4t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcp4t"]
 radius = 4.0
@@ -118,6 +121,19 @@ flip_h = true
 visible = false
 position = Vector2(11, 2)
 texture = ExtResource("6_uy631")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_0aqy0")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_cg648")
+volume_db = -0.19
+pitch_scale = 0.83
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_wux4t")
 
 [connection signal="timeout" from="Timers/CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
 [connection signal="timeout" from="Timers/FireTimer" to="." method="_on_fire_timer_timeout"]

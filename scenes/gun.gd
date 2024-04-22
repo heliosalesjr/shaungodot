@@ -6,4 +6,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	body.has_gun = true
+	$PickUpGun.play()
+	$Sprite2D.hide()
+	await $PickUpGun.finished
 	queue_free()

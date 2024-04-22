@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx1gr1jgmx2ea"]
+[gd_scene load_steps=5 format=3 uid="uid://dx1gr1jgmx2ea"]
 
 [ext_resource type="Script" path="res://scenes/gun.gd" id="1_40n38"]
 [ext_resource type="Texture2D" uid="uid://b514eyejb7y5b" path="res://assets/graphics/player/gun/gun.png" id="1_hrws1"]
+[ext_resource type="AudioStream" uid="uid://l1apqcxdb2hv" path="res://assets/audio/power_up_01.ogg" id="3_afmr4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7uife"]
 size = Vector2(10, 5)
@@ -17,5 +18,8 @@ texture = ExtResource("1_hrws1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_7uife")
+
+[node name="PickUpGun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_afmr4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

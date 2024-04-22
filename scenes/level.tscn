@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwh1co2fi1rok"]
+[gd_scene load_steps=12 format=3 uid="uid://bwh1co2fi1rok"]
 
 [ext_resource type="Texture2D" uid="uid://cfacw6vaff7a6" path="res://assets/graphics/level/tilesets/level_tilemap.png" id="1_0c252"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_iudxe"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dpa6db8425hyk" path="res://scenes/bee.tscn" id="3_880iw"]
 [ext_resource type="PackedScene" uid="uid://dx1gr1jgmx2ea" path="res://scenes/gun.tscn" id="5_1jc8d"]
 [ext_resource type="PackedScene" uid="uid://brsbmo1lvt3rb" path="res://scenes/worm.tscn" id="5_vy3w5"]
+[ext_resource type="Texture2D" uid="uid://ttfdde4ui0nh" path="res://assets/graphics/level/tilesets/decoration_tilemap.png" id="7_wweo3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_07ill"]
 texture = ExtResource("1_0c252")
@@ -110,6 +111,28 @@ texture = ExtResource("1_0c252")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_07ill")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5cucn"]
+texture = ExtResource("7_wweo3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_drrcw"]
+sources/0 = SubResource("TileSetAtlasSource_5cucn")
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_iudxe")
 
@@ -152,5 +175,10 @@ position = Vector2(448, 208)
 
 [node name="Marker2D2" type="Marker2D" parent="BeePathPoints"]
 position = Vector2(491, 194)
+
+[node name="Decoration" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_drrcw")
+format = 2
+layer_0/tile_data = PackedInt32Array(1507362, 65536, 0, 1572901, 65536, 0, 1441834, 65536, 0, 1441823, 262144, 0, 1507359, 262144, 1, 1572895, 262144, 2, 1310758, 262144, 0, 1376294, 262144, 1, 1441830, 262144, 2, 1572896, 0, 1, 1507361, 0, 1, 1507363, 65536, 1)
 
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]

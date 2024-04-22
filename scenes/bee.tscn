@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpa6db8425hyk"]
+[gd_scene load_steps=10 format=3 uid="uid://dpa6db8425hyk"]
 
 [ext_resource type="Script" path="res://scenes/bee.gd" id="1_7buio"]
 [ext_resource type="Texture2D" uid="uid://c6dmv7d81a53m" path="res://assets/graphics/Enemies/bee/0.png" id="1_oe85f"]
 [ext_resource type="Shader" path="res://scenes/flicker.gdshader" id="2_vfqjh"]
 [ext_resource type="Texture2D" uid="uid://dkgqo1pfi70kk" path="res://assets/graphics/Enemies/bee/1.png" id="3_cq3rg"]
+[ext_resource type="AudioStream" uid="uid://6unrv3cfpge4" path="res://assets/audio/shot_01.ogg" id="5_f71d8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_euwyb"]
 shader = ExtResource("2_vfqjh")
@@ -42,7 +43,7 @@ script = ExtResource("1_7buio")
 material = SubResource("ShaderMaterial_euwyb")
 sprite_frames = SubResource("SpriteFrames_qbmfo")
 autoplay = "default"
-frame_progress = 0.771062
+frame_progress = 0.312441
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -51,6 +52,9 @@ texture = ExtResource("1_oe85f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rk43o")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_f71d8")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

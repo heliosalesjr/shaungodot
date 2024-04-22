@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://brsbmo1lvt3rb"]
+[gd_scene load_steps=12 format=3 uid="uid://brsbmo1lvt3rb"]
 
 [ext_resource type="Script" path="res://scenes/worm.gd" id="1_3ofww"]
 [ext_resource type="Texture2D" uid="uid://dilo1tn808fex" path="res://assets/graphics/Enemies/worm/0.png" id="1_vnq1o"]
 [ext_resource type="Shader" path="res://scenes/flicker.gdshader" id="2_3lfnv"]
 [ext_resource type="Texture2D" uid="uid://cv74fe1n24lgm" path="res://assets/graphics/Enemies/worm/1.png" id="4_gh78q"]
+[ext_resource type="AudioStream" uid="uid://6unrv3cfpge4" path="res://assets/audio/shot_01.ogg" id="5_iq683"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_byj2f"]
 shader = ExtResource("2_3lfnv")
@@ -67,6 +68,9 @@ shape = SubResource("RectangleShape2D_32rmo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCliffArea"]
 position = Vector2(-6, 5)
 shape = SubResource("RectangleShape2D_qland")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_iq683")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

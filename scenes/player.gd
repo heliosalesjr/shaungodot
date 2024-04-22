@@ -24,6 +24,7 @@ func get_input():
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = -200
+		$Sounds/JumpSound.play()
 	
 	if Input.is_action_pressed("shoot") && can_shoot && has_gun:
 		can_shoot = false
@@ -31,7 +32,7 @@ func get_input():
 		shoot.emit(global_position, facing_right)
 		$Timers/FireTimer.start()
 		$Fire.get_child(int(facing_right)).show()
-		
+		$Sounds/FireSound.play()
 func apply_gravity():
 	velocity.y += 10
 
@@ -66,6 +67,7 @@ func get_damage(amount):
 		tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 0.0, 0.1).set_delay(0.2)
 		vulnerable = false
 		$Timers/InvincibilityTimer.start()
+		$Sounds/DamageSound.play()
 
 func _on_invincibility_timer_timeout():
 	vulnerable = true
