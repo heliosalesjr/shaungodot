@@ -4,5 +4,3 @@ extends CanvasLayer
 
 func _process(_delta):
 	$MarginContainer/ProgressBar.value = player.health
-	#if player.health < 0:
-		#
